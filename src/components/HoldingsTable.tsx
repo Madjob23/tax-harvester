@@ -66,9 +66,9 @@ export default function HoldingsTable() {
 
   return (
     <div className="space-y-4">
-      <div className="bg-white overflow-x-auto rounded-lg">
+      <div className="bg-white dark:bg-slate-800 overflow-x-auto rounded-lg">
         <Table>
-          <TableHeader className='bg-blue-50'>
+          <TableHeader className='bg-blue-50 dark:bg-slate-700'>
             <TableRow>
               <TableHead className="w-12">
                 <Checkbox 
@@ -79,7 +79,7 @@ export default function HoldingsTable() {
               </TableHead>
               <TableHead>
                 <div 
-                  className="flex items-center space-x-1 cursor-pointer" 
+                  className="flex items-center space-x-1 cursor-pointer dark:text-slate-200" 
                   onClick={() => handleSort("coin")}
                   role="button"
                   tabIndex={0}
@@ -97,14 +97,14 @@ export default function HoldingsTable() {
                   tabIndex={0}
                   aria-label="Sort by holdings"
                 >
-                  <span>Holdings</span>
-                  <span className='text-xs text-gray-500'>Current Market Rate</span>
+                  <span className="dark:text-slate-200">Holdings</span>
+                  <span className='text-xs text-gray-500 dark:text-slate-400'>Current Market Rate</span>
                   {renderSortIcon("totalHolding")}
                 </div>
               </TableHead>
               <TableHead>
                 <div 
-                  className="flex items-center space-x-1 cursor-pointer" 
+                  className="flex items-center space-x-1 cursor-pointer dark:text-slate-200" 
                   onClick={() => handleSort("currentPrice")}
                   role="button"
                   tabIndex={0}
@@ -116,7 +116,7 @@ export default function HoldingsTable() {
               </TableHead>
               <TableHead>
                 <div 
-                  className="flex items-center space-x-1 cursor-pointer" 
+                  className="flex items-center space-x-1 cursor-pointer dark:text-slate-200" 
                   onClick={() => handleSort("stcg.gain")}
                   role="button"
                   tabIndex={0}
@@ -128,7 +128,7 @@ export default function HoldingsTable() {
               </TableHead>
               <TableHead>
                 <div 
-                  className="flex items-center space-x-1 cursor-pointer" 
+                  className="flex items-center space-x-1 cursor-pointer dark:text-slate-200" 
                   onClick={() => handleSort("ltcg.gain")}
                   role="button"
                   tabIndex={0}
@@ -138,7 +138,7 @@ export default function HoldingsTable() {
                   {renderSortIcon("ltcg.gain")}
                 </div>
               </TableHead>
-              <TableHead>Amount to Sell</TableHead>
+              <TableHead className="dark:text-slate-200">Amount to Sell</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -148,7 +148,7 @@ export default function HoldingsTable() {
               return (
                 <TableRow 
                   key={holding.coin}
-                  className={isSelected ? "bg-blue-50 selection-animate" : "hover:bg-gray-50"}
+                  className={isSelected ? "bg-blue-50 dark:bg-blue-900/20 selection-animate" : "hover:bg-gray-50 dark:hover:bg-slate-700/50"}
                 >
                   <TableCell>
                     <Checkbox 
@@ -172,48 +172,48 @@ export default function HoldingsTable() {
                         onError={(e) => { (e.target as HTMLImageElement).src = "/fallback-coin.svg" }}
                       />
                       <div>
-                        <div className="font-medium">{holding.coin}</div>
-                        <div className="text-xs text-gray-500 truncate max-w-[180px]">
+                        <div className="font-medium dark:text-white">{holding.coin}</div>
+                        <div className="text-xs text-gray-500 dark:text-slate-400 truncate max-w-[180px]">
                           {holding.coinName}
                         </div>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="font-medium">{formatNumber(holding.totalHolding)}</div>
-                    <div className="text-xs text-gray-500">{`${formatCurrency(holding.averageBuyPrice)}/${holding.coin}`}</div>
+                    <div className="font-medium dark:text-white">{formatNumber(holding.totalHolding)}</div>
+                    <div className="text-xs text-gray-500 dark:text-slate-400">{`${formatCurrency(holding.averageBuyPrice)}/${holding.coin}`}</div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="dark:text-white">
                       <NumberWithTooltip value={holding.currentPrice} isCurrency={true} />
                   </TableCell>
                   <TableCell>
                     <div className={holding.stcg.gain > 0 
-                                    ? "text-green-600" 
+                                    ? "text-green-600 dark:text-green-400" 
                                     : holding.stcg.gain < 0 
-                                      ? "text-red-600" 
-                                      : ""
+                                      ? "text-red-600 dark:text-red-400" 
+                                      : "dark:text-white"
                     }>
                       <NumberWithTooltip value={holding.stcg.gain} isCurrency={true} />
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-slate-400">
                       <NumberWithTooltip value={holding.stcg.balance} isCurrency={false} />
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className={holding.ltcg.gain > 0 
-                      ? "text-green-600" 
-                      : holding.stcg.gain < 0 
-                        ? "text-red-600" 
-                        : ""
+                      ? "text-green-600 dark:text-green-400" 
+                      : holding.ltcg.gain < 0 
+                        ? "text-red-600 dark:text-red-400" 
+                        : "dark:text-white"
                     }>
                       <NumberWithTooltip value={holding.ltcg.gain} isCurrency={true} />
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-gray-500 dark:text-slate-400">
                       <NumberWithTooltip value={holding.ltcg.balance} isCurrency={false} />
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className={`transition-all duration-200 ${isSelected ? "font-medium" : "text-gray-400"}`}>
+                    <div className={`transition-all duration-200 ${isSelected ? "font-medium dark:text-white" : "text-gray-400 dark:text-slate-500"}`}>
                       {isSelected ? formatNumber(holding.totalHolding) : "-"}
                     </div>
                   </TableCell>
@@ -228,7 +228,7 @@ export default function HoldingsTable() {
         <div className="mt-4">
           <Button
             variant="link"
-            className='underline text-[#0052FE] p-0'
+            className='underline text-[#0052FE] dark:text-blue-400 p-0'
             onClick={() => setLimit(limit === holdings.length ? 4 : holdings.length)}
             aria-label={limit === holdings.length ? "View less items" : "View all items"}
           >

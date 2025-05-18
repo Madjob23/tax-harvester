@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { TaxHarvestingProvider } from '@/context/TaxHarvestingContext';
 import Dashboard from '@/components/Dashboard';
 import NormalTooltip from '@/components/NormalTooltip';
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
               </p>
             }
           />
+          <ThemeToggle />
         </h1>
         <Suspense fallback={<div>Loading...</div>}>
           <TaxHarvestingProvider>

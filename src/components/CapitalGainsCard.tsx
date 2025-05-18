@@ -17,36 +17,51 @@ export default function CapitalGainsCard({
   savings,
 }: CapitalGainsCardProps) {
   const { netSTCG, netLTCG, realisedGains } = calculateNetGains(capitalGains);
-  const bgColor = variant === "dark" ? "bg-white" : "bg-blue-500";
-  const textColor = variant === "dark" ? "text-black" : "text-white";
-
+  
+  // Adjusted for dark mode support while keeping the variant system
+  const bgColor = variant === "dark" 
+    ? "bg-white dark:bg-slate-900" 
+    : "bg-blue-500 dark:bg-blue-700";
+    
+  const textColor = variant === "dark" 
+    ? "text-black dark:text-white" 
+    : "text-white";
+  
   return (
     <Card className={`${bgColor} ${textColor} h-[295px] rounded-lg shadow-md p-4`}>
       <CardContent className="p-0">
         {/* Title */}
         <h2 className="text-xl font-semibold">{title}</h2>
-
+        
         {/* Column Headers */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="col-span-1"></div>
           <div className="col-span-1 text-right font-medium">Short-term</div>
           <div className="col-span-1 text-right font-medium">Long-term</div>
         </div>
-
+        
         {/* Profits Row */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="col-span-1 font-medium">Profits</div>
-          <div className="col-span-1 text-right">{formatCurrency(capitalGains.stcg.profits)}</div>
-          <div className="col-span-1 text-right">{formatCurrency(capitalGains.ltcg.profits)}</div>
+          <div className="col-span-1 text-right">
+            {formatCurrency(capitalGains.stcg.profits)}
+          </div>
+          <div className="col-span-1 text-right">
+            {formatCurrency(capitalGains.ltcg.profits)}
+          </div>
         </div>
-
+        
         {/* Losses Row */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="col-span-1 font-medium">Losses</div>
-          <div className="col-span-1 text-right">- {formatCurrency(capitalGains.stcg.losses)}</div>
-          <div className="col-span-1 text-right">- {formatCurrency(capitalGains.ltcg.losses)}</div>
+          <div className="col-span-1 text-right">
+            - {formatCurrency(capitalGains.stcg.losses)}
+          </div>
+          <div className="col-span-1 text-right">
+            - {formatCurrency(capitalGains.ltcg.losses)}
+          </div>
         </div>
-
+        
         {/* Net Capital Gains Row */}
         <div className="grid grid-cols-3 gap-2 mb-6">
           <div className="col-span-1 font-semibold">Net Capital Gains</div>
@@ -59,7 +74,7 @@ export default function CapitalGainsCard({
             {formatCurrency(Math.abs(netLTCG))}
           </div>
         </div>
-
+        
         {/* Bottom Total Line */}
         <div className="">
           <div className="flex gap-3 items-center">
@@ -72,11 +87,11 @@ export default function CapitalGainsCard({
             </div>
           </div>
         </div>
-
+        
         {/* Savings message */}
         {savings && savings > 0 && (
           <div className="mt-4">
-            <p className="text-base font-medium">
+            <p className={`text-base font-medium ${variant === "blue" ? "text-green-200 dark:text-green-300" : "text-green-600 dark:text-green-400"}`}>
               🎉 You are going to save upto {formatCurrency(savings)}
             </p>
           </div>
