@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useReducer, useEffect } from "react";
-import { TaxHarvestingState, TaxHarvestingAction, CapitalGains, Holding } from "@/types";
+import { TaxHarvestingState, TaxHarvestingAction } from "@/types";
 import { fetchCapitalGains, fetchHoldings } from "@/services/api";
 import { calculatePostHarvestingGains } from "@/lib/calculations";
 
@@ -124,7 +124,7 @@ export const TaxHarvestingProvider: React.FC<{ children: React.ReactNode }> = ({
       } catch (error) {
         dispatch({ 
           type: "FETCH_DATA_ERROR", 
-          payload: "Failed to fetch data. Please try again." 
+          payload: `Failed to fetch data. ${error}` 
         });
       }
     };
