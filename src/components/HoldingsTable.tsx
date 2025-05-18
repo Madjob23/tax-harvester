@@ -187,7 +187,12 @@ export default function HoldingsTable() {
                       <NumberWithTooltip value={holding.currentPrice} isCurrency={true} />
                   </TableCell>
                   <TableCell>
-                    <div className={holding.stcg.gain >= 0 ? "text-green-600" : "text-red-600"}>
+                    <div className={holding.stcg.gain > 0 
+                                    ? "text-green-600" 
+                                    : holding.stcg.gain < 0 
+                                      ? "text-red-600" 
+                                      : ""
+                    }>
                       <NumberWithTooltip value={holding.stcg.gain} isCurrency={true} />
                     </div>
                     <div className="text-xs text-gray-500">
@@ -195,7 +200,12 @@ export default function HoldingsTable() {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className={holding.ltcg.gain >= 0 ? "text-green-600" : "text-red-600"}>
+                    <div className={holding.ltcg.gain > 0 
+                      ? "text-green-600" 
+                      : holding.stcg.gain < 0 
+                        ? "text-red-600" 
+                        : ""
+                    }>
                       <NumberWithTooltip value={holding.ltcg.gain} isCurrency={true} />
                     </div>
                     <div className="text-xs text-gray-500">
