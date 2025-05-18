@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { SortableField, SortDirection } from "@/types";
 import NumberWithTooltip from '@/components/NumberWithTooltip';
+import Image from "next/image";
 
 export default function HoldingsTable() {
   const { state, dispatch } = useTaxHarvesting();
@@ -17,6 +18,15 @@ export default function HoldingsTable() {
   const [limit, setLimit] = useState(4);
   const [sortField, setSortField] = useState<SortableField>("currentPrice");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const [imageFallbacks, setImageFallbacks] = useState<Record<string, boolean>>({});
+
+  // Handle image error
+  const handleImageError = useCallback((coinSymbol: string) => {
+    setImageFallbacks(prev => ({
+      ...prev,
+      [coinSymbol]: true
+    }));
+  }, []);
 
   // Get sorted holdings based on current sort settings
   const sortedHoldings = [...holdings].sort((a, b) => {
@@ -165,12 +175,25 @@ export default function HoldingsTable() {
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center space-x-3">
-                      <img 
-                        src={holding.logo} 
-                        alt={holding.coin} 
-                        className="w-8 h-8 rounded-full object-cover"
-                        onError={(e) => { (e.target as HTMLImageElement).src = "/fallback-coin.svg" }}
-                      />
+                      {imageFallbacks[holding.coin] ? (
+                        <Image 
+                          src="/fallback-coin.svg"
+                          alt={holding.coin} 
+                          width={32}
+                          height={32}
+                          className="rounded-full object-cover"
+                        />
+                      ) : (
+                        <Image 
+                          src={holding.logo} 
+                          alt={holding.coin} 
+                          width={32}
+                          height={32}
+                          className="rounded-full object-cover"
+                          onError={() => handleImageError(holding.coin)}
+                          unoptimized={!holding.logo.startsWith('/')} // Use unoptimized for external URLs
+                        />
+                      )}
                       <div>
                         <div className="font-medium dark:text-white">{holding.coin}</div>
                         <div className="text-xs text-gray-500 dark:text-slate-400 truncate max-w-[180px]">
