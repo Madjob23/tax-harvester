@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { SortableField, SortDirection } from "@/types";
+import NumberWithTooltip from '@/components/NumberWithTooltip';
 
 export default function HoldingsTable() {
   const { state, dispatch } = useTaxHarvesting();
@@ -181,18 +182,24 @@ export default function HoldingsTable() {
                     <div className="font-medium">{formatNumber(holding.totalHolding)}</div>
                     <div className="text-xs text-gray-500">{formatCurrency(holding.averageBuyPrice)}</div>
                   </TableCell>
-                  <TableCell>{formatCurrency(holding.currentPrice)}</TableCell>
+                  <TableCell>
+                      <NumberWithTooltip value={holding.currentPrice} isCurrency={true} />
+                  </TableCell>
                   <TableCell>
                     <div className={holding.stcg.gain >= 0 ? "text-green-600" : "text-red-600"}>
-                      {formatCurrency(holding.stcg.gain)}
+                      <NumberWithTooltip value={holding.stcg.gain} isCurrency={true} />
                     </div>
-                    <div className="text-xs text-gray-500">{formatNumber(holding.stcg.balance)}</div>
+                    <div className="text-xs text-gray-500">
+                      <NumberWithTooltip value={holding.stcg.balance} isCurrency={false} />
+                    </div>
                   </TableCell>
                   <TableCell>
                     <div className={holding.ltcg.gain >= 0 ? "text-green-600" : "text-red-600"}>
-                      {formatCurrency(holding.ltcg.gain)}
+                      <NumberWithTooltip value={holding.ltcg.gain} isCurrency={true} />
                     </div>
-                    <div className="text-xs text-gray-500">{formatNumber(holding.ltcg.balance)}</div>
+                    <div className="text-xs text-gray-500">
+                      <NumberWithTooltip value={holding.ltcg.balance} isCurrency={false} />
+                    </div>
                   </TableCell>
                   <TableCell>
                     <div className={`transition-all duration-200 ${isSelected ? "font-medium" : "text-gray-400"}`}>
