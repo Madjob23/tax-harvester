@@ -68,7 +68,7 @@ export default function HoldingsTable() {
     <div className="space-y-4">
       <div className="bg-white overflow-x-auto rounded-lg">
         <Table>
-          <TableHeader>
+          <TableHeader className='bg-blue-50'>
             <TableRow>
               <TableHead className="w-12">
                 <Checkbox 
@@ -91,13 +91,14 @@ export default function HoldingsTable() {
               </TableHead>
               <TableHead>
                 <div 
-                  className="flex items-center space-x-1 cursor-pointer" 
+                  className="flex flex-col items-start space-x-1 cursor-pointer" 
                   onClick={() => handleSort("totalHolding")}
                   role="button"
                   tabIndex={0}
                   aria-label="Sort by holdings"
                 >
-                  <span>Holdings / Avg Buy Price</span>
+                  <span>Holdings</span>
+                  <span className='text-xs text-gray-500'>Current Market Rate</span>
                   {renderSortIcon("totalHolding")}
                 </div>
               </TableHead>
@@ -180,7 +181,7 @@ export default function HoldingsTable() {
                   </TableCell>
                   <TableCell>
                     <div className="font-medium">{formatNumber(holding.totalHolding)}</div>
-                    <div className="text-xs text-gray-500">{formatCurrency(holding.averageBuyPrice)}</div>
+                    <div className="text-xs text-gray-500">{`${formatCurrency(holding.averageBuyPrice)}/${holding.coin}`}</div>
                   </TableCell>
                   <TableCell>
                       <NumberWithTooltip value={holding.currentPrice} isCurrency={true} />
