@@ -57,8 +57,11 @@ export function formatNumber(value: number): string {
  * @param path The property path (e.g., "stcg.gain")
  * @returns The property value
  */
-export function getNestedProperty(obj: any, path: string): any {
+export function getNestedProperty<T>(obj: T, path: string): unknown {
   return path.split('.').reduce((prev, curr) => {
-    return prev ? prev[curr] : null;
-  }, obj);
+    // If prev is null or undefined, return it
+    if (prev === null || prev === undefined) return prev;
+    // Otherwise access the property
+    return (prev as Record<string, unknown>)[curr];
+  }, obj as unknown);
 }

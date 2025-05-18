@@ -30,7 +30,7 @@ export default function HoldingsTable() {
 
   // Get sorted holdings based on current sort settings
   const sortedHoldings = [...holdings].sort((a, b) => {
-    let valueA, valueB;
+    let valueA: unknown, valueB: unknown;
 
     // Handle nested fields
     if (sortField.includes(".")) {
@@ -41,10 +41,20 @@ export default function HoldingsTable() {
       valueB = b[sortField as keyof typeof b];
     }
 
-    if (sortDirection === "asc") {
-      return valueA > valueB ? 1 : -1;
+    // Safely compare values
+    if (typeof valueA === 'number' && typeof valueB === 'number') {
+      // Numeric comparison
+      return sortDirection === "asc" 
+        ? valueA - valueB 
+        : valueB - valueA;
     } else {
-      return valueA < valueB ? 1 : -1;
+      // String comparison or fallback for other types
+      const strA = String(valueA || '');
+      const strB = String(valueB || '');
+      
+      return sortDirection === "asc"
+        ? strA.localeCompare(strB)
+        : strB.localeCompare(strA);
     }
   });
 
