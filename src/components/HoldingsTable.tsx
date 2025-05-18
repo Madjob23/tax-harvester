@@ -214,9 +214,10 @@ export default function HoldingsTable() {
       </div>
       
       {holdings.length > 4 && (
-        <div className="flex justify-center mt-4">
+        <div className="mt-4">
           <Button
-            variant="outline"
+            variant="link"
+            className='underline text-[#0052FE] p-0'
             onClick={() => setLimit(limit === holdings.length ? 4 : holdings.length)}
             aria-label={limit === holdings.length ? "View less items" : "View all items"}
           >
