@@ -147,3 +147,7 @@
 .selection-animate {
   animation: selection-pulse 1s ease-in-out;
 }
+
+.negative-value::before {
+  content: "- ";
+}
