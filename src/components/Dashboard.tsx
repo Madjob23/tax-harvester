@@ -2,6 +2,7 @@
 
 import { useTaxHarvesting } from "@/context/TaxHarvestingContext";
 import { calculateTaxSavings } from "@/lib/calculations";
+import DisclaimerAccordion from "@/components/DisclaimerAccordion";
 import CapitalGainsCard from "@/components/CapitalGainsCard";
 import HoldingsTable from "@/components/HoldingsTable";
 import LoadingState from "@/components/LoadingState";
@@ -30,6 +31,7 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
+      <DisclaimerAccordion />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="responsive-card">
           <CapitalGainsCard
