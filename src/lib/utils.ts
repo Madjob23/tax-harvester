@@ -29,13 +29,27 @@ export function formatCurrency(amount: number): string {
  * @returns Formatted number string
  */
 export function formatNumber(value: number): string {
-  if (Math.abs(value) < 0.001 && value !== 0) {
-    return value.toExponential(2);
+  // Handle zero case
+  if (value === 0) {
+    return "0";
   }
   
-  return new Intl.NumberFormat("en-IN", {
+  // For very small numbers (that would normally be in scientific notation)
+  if (Math.abs(value) < 0.001) {
+    // Find the number of leading zeros after the decimal point
+    const valueStr = value.toString();
+    const decimalStr = valueStr.includes('e-') 
+      ? '0.' + '0'.repeat(parseInt(valueStr.split('e-')[1])-1) + valueStr.split('e-')[0].replace('.', '')
+      : valueStr;
+    
+    // Ensure we show at least 8 significant digits, which should be enough for most crypto amounts
+    return decimalStr.includes('.') ? Number(value).toFixed(8) : decimalStr;
+  }
+  
+  // For normal numbers, use standard formatting
+  return new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 0,
-    maximumFractionDigits: 5,
+    maximumFractionDigits: 8, // Increased for small but not tiny numbers
   }).format(value);
 }
 

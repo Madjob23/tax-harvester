@@ -34,7 +34,17 @@ const NumberWithTooltip: React.FC<NumberWithTooltipProps> = ({
           {isCurrency ? formatCurrency(value) : formatNumber(value)}
         </TooltipTrigger>
         <TooltipContent>
-          <p>{value.toString()}</p>
+          <p>
+            {isCurrency 
+            ? new Intl.NumberFormat("en-US", { 
+                style: "currency", 
+                currency: "USD",
+                minimumFractionDigits: 8,
+                maximumFractionDigits: 8 
+                }).format(value)
+            : value.toFixed(8)
+            }
+        </p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
