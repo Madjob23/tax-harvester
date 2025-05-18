@@ -14,9 +14,9 @@ export function cn(...inputs: ClassValue[]) {
  * @returns Formatted currency string
  */
 export function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat("en-IN", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "INR",
+    currency: "USD",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(amount);
