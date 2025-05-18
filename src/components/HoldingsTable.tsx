@@ -13,7 +13,7 @@ import { SortableField, SortDirection } from "@/types";
 export default function HoldingsTable() {
   const { state, dispatch } = useTaxHarvesting();
   const { holdings, selectedHoldingIds } = state;
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(4);
   const [sortField, setSortField] = useState<SortableField>("currentPrice");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
@@ -206,11 +206,11 @@ export default function HoldingsTable() {
         </Table>
       </div>
       
-      {holdings.length > 10 && (
+      {holdings.length > 4 && (
         <div className="flex justify-center mt-4">
           <Button
             variant="outline"
-            onClick={() => setLimit(limit === holdings.length ? 10 : holdings.length)}
+            onClick={() => setLimit(limit === holdings.length ? 4 : holdings.length)}
             aria-label={limit === holdings.length ? "View less items" : "View all items"}
           >
             {limit === holdings.length ? "View Less" : "View All"}
