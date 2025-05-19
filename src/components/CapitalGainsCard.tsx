@@ -91,7 +91,7 @@ export default function CapitalGainsCard({
         {/* Savings message */}
         {savings && savings > 0 && (
           <div className="mt-4">
-            <p className={`text-base font-medium ${variant === "blue" ? "text-green-200 dark:text-green-300" : "text-green-600 dark:text-green-400"}`}>
+            <p className={`text-base font-medium text-white`}>
               🎉 You are going to save upto {formatCurrency(savings)}
             </p>
           </div>

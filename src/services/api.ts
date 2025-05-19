@@ -129,13 +129,77 @@ const HOLDINGS_DATA: Holding[] = [
       "balance": 0,
       "gain": 0
     }
+  },
+  {
+    "coin": "BTC",
+    "coinName": "Bitcoin",
+    "logo": "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
+    "currentPrice": 6853200,
+    "totalHolding": 0.5,
+    "averageBuyPrice": 15000000,
+    "stcg": {
+      "balance": 0.25,
+      "gain": -1036650
+    },
+    "ltcg": {
+      "balance": 0.25,
+      "gain": -1036650
+    }
+  },
+  {
+    "coin": "SOL",
+    "coinName": "Solana",
+    "logo": "https://coin-images.coingecko.com/coins/images/4128/large/solana.png?1696504756",
+    "currentPrice": 13548,
+    "totalHolding": 25,
+    "averageBuyPrice": 21000,
+    "stcg": {
+      "balance": 12.5,
+      "gain": -93150
+    },
+    "ltcg": {
+      "balance": 12.5,
+      "gain": -93150
+    }
+  },
+  {
+    "coin": "AVAX",
+    "coinName": "Avalanche",
+    "logo": "https://coin-images.coingecko.com/coins/images/12559/large/Avalanche_Circle_RedWhite_Trans.png?1696512369",
+    "currentPrice": 3350,
+    "totalHolding": 75,
+    "averageBuyPrice": 5100,
+    "stcg": {
+      "balance": 50,
+      "gain": -87500
+    },
+    "ltcg": {
+      "balance": 25,
+      "gain": -43750
+    }
+  },
+  {
+    "coin": "LINK",
+    "coinName": "Chainlink",
+    "logo": "https://coin-images.coingecko.com/coins/images/877/large/chainlink.png?1696501481",
+    "currentPrice": 1520,
+    "totalHolding": 150,
+    "averageBuyPrice": 2230,
+    "stcg": {
+      "balance": 100,
+      "gain": -71000
+    },
+    "ltcg": {
+      "balance": 50,
+      "gain": -35500
+    }
   }
 ];
 
 // Mock API data for capital gains
 const CAPITAL_GAINS_DATA: CapitalGains = {
-  stcg: { profits: 70200.88, losses: 1548.53 },
-  ltcg: { profits: 5020, losses: 3050 },
+  stcg: { profits: 170000, losses: 1548.53 },
+  ltcg: { profits: 95000, losses: 3050 },
 };
 
 /**
