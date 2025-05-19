@@ -23,12 +23,12 @@ export default function NormalTooltip({
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <span className={`font-medium text-sm underline text-[#0052FE] cursor-pointer ${className}`}>
+          <span className={`font-medium text-sm underline text-primary cursor-pointer ${className}`}>
             {text}
           </span>
         </TooltipTrigger>
         <TooltipContent 
-          className="max-w-md p-5 bg-gray-900 text-white border-none rounded-md shadow-lg"
+          className="max-w-md p-5 bg-popover text-popover-foreground border-none rounded-md shadow-lg dark:bg-slate-900"
           sideOffset={5}
         >
           {tooltipContent}
@@ -42,7 +42,7 @@ export default function NormalTooltip({
               height: 0,
               borderLeft: "8px solid transparent",
               borderRight: "8px solid transparent",
-              borderBottom: "8px solid rgb(17, 24, 39)"
+              borderBottom: "8px solid var(--popover, rgb(17, 24, 39))"
             }}
           />
         </TooltipContent>

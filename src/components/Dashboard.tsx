@@ -1,3 +1,4 @@
+// @/components/Dashboard.tsx (updated)
 'use client';
 
 import { useTaxHarvesting } from "@/context/TaxHarvestingContext";
@@ -51,10 +52,10 @@ export default function Dashboard() {
         </div>
       </div>
       
-      <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm">
+      <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-lg shadow-sm">
         <div className="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center">
-          <h2 className="text-xl font-semibold mb-2 sm:mb-0">Your Holdings</h2>
-          <div className="text-sm text-gray-500">
+          <h2 className="text-xl font-semibold mb-2 sm:mb-0 dark:text-white">Your Holdings</h2>
+          <div className="text-sm text-gray-500 dark:text-slate-400">
             {selectedHoldingIds.size} of {holdings.length} selected
           </div>
         </div>
