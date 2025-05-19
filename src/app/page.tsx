@@ -30,6 +30,7 @@ export default function Home() {
             <Dashboard />
           </TaxHarvestingProvider>
         </Suspense>
+        <a href="https://www.flaticon.com/free-icons/yield" title="yield icons">Yield icons created by Awicon - Flaticon</a>
       </div>
     </main>
   );

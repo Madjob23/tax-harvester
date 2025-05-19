@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: 'Tax Loss Harvesting Tool',
   description: 'A tool to help optimize your cryptocurrency tax strategy',
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
