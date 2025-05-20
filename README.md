@@ -2,8 +2,9 @@
 
 A sophisticated web application designed to help cryptocurrency investors optimize their tax strategy by identifying opportunities for tax loss harvesting.
 
-![Tax Loss Harvesting Dashboard](public/dashboard-screenshot.png)
-
+![Tax Loss Harvesting Dashboard](screenshots/ss1.png)
+![Dynamic Results](screenshots/ss2.png)
+![Holdings Table](screenshots/ss3.png)
 ## Getting Started
 
 First, install the dependencies:
@@ -79,11 +80,6 @@ This application makes the following assumptions:
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
 - [Shadcn UI](https://ui.shadcn.com/) - UI component library
 - [Lucide React](https://lucide.dev/) - Icon library
-
-## Screenshots
-
-![Capital Gains Overview](public/capital-gains-screenshot.png)
-![Holdings Selection Interface](public/holdings-screenshot.png)
 
 ## Customization
 
